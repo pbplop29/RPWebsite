@@ -4,7 +4,6 @@ function App() {
   return (
     <div className="App">
       <Navmenu />
-      <h1>WASSUP</h1>
     </div>
   );
 }
