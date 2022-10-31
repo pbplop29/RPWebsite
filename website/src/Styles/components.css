@@ -89,14 +89,11 @@ div.menu-pane {
   padding-top: 20px;
   padding-bottom: 20px;
   margin-left: 10px;
-    font-size: 1em;
+    font-size: 2em;
 }
 
 
-.menu-pane li:first-child {
-  font-size: 1.3em;
-  margin-left: -10px;
-}
+
 
 
 .menu-links li a {
@@ -109,33 +106,24 @@ div.menu-pane {
   color: #FFAB91;
 }
 
-.menu-links li:first-child:hover a {
-  color: black;  
-  background-color: #FFAB91;
-}
-
-#QC-info {
-  background-color: #FFAB91;
-    border: 2px solid;
-  border-color: #FFAB91;
-display: block;
-  opacity: 0;
-  
+.logout-btn{
+    font-family: Libre Caslon Text;
+    text-align: left;
+    border: none;
+    font-size: 0.9em;
+    background-color: transparent;
+    color: white;
+    text-decoration: none;
+    transition: 0.5s ease;
 }
 
 
-#DC-info {
-  background-color: #FFAB91;
-    border: 2px solid;
-  border-color: #FFAB91;
-display: block;
-  opacity: 0;
+.logout-btn:hover{
+    color: red;
+    transition: 0.5s ease;
+
 }
 
-
-.menu-links li:first-child a {
-  padding: 5px;
-}
 
 
 

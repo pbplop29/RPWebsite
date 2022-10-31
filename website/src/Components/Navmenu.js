@@ -20,8 +20,7 @@ function Navmenu() {
         <nav>
           <ul class="menu-links">
             <li>
-              <a href="/">HOME</a>
-              <span id="QC-info"></span>
+              <a href="/">home</a>
             </li>
 
             <li>
@@ -33,14 +32,15 @@ function Navmenu() {
           </ul>
           <ul class="menu-links">
             <li>
-              <a href="/profile">PROFILE</a>
-              <span id="DC-info"></span>
+              <a href="/profile">profile</a>
             </li>
             <li>
               <a href="/statistics">statistics</a>
             </li>
             <li>
-              <a href="">logout</a>
+              <button className="logout-btn" href="">
+                logout
+              </button>
             </li>
           </ul>
         </nav>
