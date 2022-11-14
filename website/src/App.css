@@ -2,3 +2,10 @@
     padding: 1rem;
     margin-left: 3rem;
 }
+
+body{
+    background-color: #FDA4BA;
+}
+body::-webkit-scrollbar {
+    display: none;
+  }
