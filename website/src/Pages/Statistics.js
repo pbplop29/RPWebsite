@@ -9,31 +9,13 @@ function Statistics() {
   //   localStorage.setItem("username", JSON.stringify(username));
   // }, []);
 
-  const onHandleSubmit = () => {
-    localStorage.setItem("username", JSON.stringify(username));
-  };
+  // const onHandleSubmit = () => {
+  //   sessionStorage.setItem("username", JSON.stringify(username));
+  // };
 
   return (
     <>
-      <div>username: {username}</div>
-
       <div className="form-container">
-        <form onSubmit={onHandleSubmit}>
-          <div>
-            <input
-              type="text"
-              name="username"
-              placeholder="Username"
-              onChange={(event) => {
-                setUsername(event.target.value);
-              }}
-            />
-          </div>
-
-          <div>
-            <button>Submit Contact</button>
-          </div>
-        </form>
         <Statform />
       </div>
     </>

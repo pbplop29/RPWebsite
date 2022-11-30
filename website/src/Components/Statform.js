@@ -8,7 +8,7 @@ import { VscGraphLine } from "react-icons/vsc";
 import "../Styles/components.css";
 
 function Statform() {
-  //   const [projects, setProjects]     = useState([]);
+  const [projects, setProjects] = useState([]);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -16,48 +16,87 @@ function Statform() {
   const [heartRate, setHeartRate] = useState(0);
   const [heartRateECG, setHeartRateECG] = useState(0);
 
-  let [passValue, setpassValue] = useState("");
+  // const [passValue, setpassValue] = useState(" ");
+
+  // useEffect(() => {
+  //   setpassValue(
+  //     JSON.stringify(JSON.parse(sessionStorage.getItem("username")))
+  //   );
+  // }, []);
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("username"));
-    setpassValue(token);
-  }, 10);
-
-  useEffect(() => {
-    onValue(ref(db, "NITxxx20"), (snapshot) => {
-      //   setProjects([]);
-      let keylist = [];
-      let valuelist = [];
-      var combined = [];
-      snapshot.forEach(function (childSnapshot) {
-        keylist.push(childSnapshot.key);
-        valuelist.push(childSnapshot.val());
-        combined.push({
-          key: childSnapshot.key,
-          value: childSnapshot.val(),
+    onValue(ref(db), (snapshot) => {
+      var temp_prj = [];
+      //   let keylist = [];
+      //   let valuelist = [];
+      snapshot.forEach(function (sonSnapshot) {
+        var combined = [];
+        sonSnapshot.forEach(function (childSnapshot) {
+          //   keylist.push(childSnapshot.key);
+          //   valuelist.push(childSnapshot.val());
+          combined.push({
+            key: childSnapshot.key,
+            value: childSnapshot.val(),
+          });
+        });
+        temp_prj.push({
+          key: sonSnapshot.key,
+          value: combined,
         });
       });
-      //   setProjects(combined);
-      setAge(combined[0].value);
-      setGender(combined[1].value);
-      setHeartRate(combined[2].value);
-      setHeartRateECG(combined[3].value);
-      setName(combined[4].value);
-      setSpo2(combined[5].value);
+      setProjects(temp_prj);
     });
   }, []);
+  console.log(projects);
+  // console.log(projects[0] ? projects[0].value[0].key : "Sorry No Project Item");
 
   return (
     <>
-      <div>passValue: {passValue}</div>
-      <div className="card_container_parent">
+      <div>
+        {Object.keys(projects).map((item) => {
+          return Object.keys(projects[item].value).map((subitem) => {
+            console.log(projects[item].value[subitem].key);
+            return (
+              <div key={subitem}>
+                {" "}
+                <div>{projects[item].value[subitem].key}</div>
+                <div>{projects[item].value[subitem].value}</div>
+              </div>
+            );
+          });
+
+          return (
+            <div key={item}>
+              <p>
+                {item}
+                <span>-----</span>
+                {projects[item].key}
+              </p>
+            </div>
+          );
+        })}
+      </div>
+      {/* <div>
+        {projects.map((first) => {
+          first.map((el) => {
+            el.map((key, value) => {
+              <div>
+                <h1>{key}</h1>
+                <h1>{value}</h1>
+              </div>;
+            });
+          });
+        })}
+      </div> */}
+      {/* <div>passValue: {passValue}</div> */}
+      {/* <div className="card_container_parent">
         {" "}
         <div class="card-container">
           <div class="name_heading">{name}</div>
 
           <img
             class="round"
-            src="https://scontent.fccu7-1.fna.fbcdn.net/v/t1.6435-1/44219169_1806385802791564_2699434727047168000_n.jpg?stp=c23.0.320.320a_dst-jpg_p320x320&_nc_cat=104&ccb=1-7&_nc_sid=7206a8&_nc_ohc=U3YTBYcwd6MAX8M_cHa&_nc_ht=scontent.fccu7-1.fna&oh=00_AfDs6_7DpNX1SjY9r4T2XLwXDfsnGn1h1OdR-FToyzj2ag&oe=63982947"
+            src="https://images.pexels.com/photos/3586798/pexels-photo-3586798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt="user"
           />
           <div>{gender}</div>
@@ -92,7 +131,7 @@ function Statform() {
             </ul>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }
