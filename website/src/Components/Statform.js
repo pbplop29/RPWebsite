@@ -9,12 +9,12 @@ import "../Styles/components.css";
 
 function Statform() {
   const [projects, setProjects] = useState([]);
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [spo2, setSpo2] = useState(0);
-  const [heartRate, setHeartRate] = useState(0);
-  const [heartRateECG, setHeartRateECG] = useState(0);
+  // const [name, setName] = useState("");
+  // const [age, setAge] = useState("");
+  // const [gender, setGender] = useState("");
+  // const [spo2, setSpo2] = useState(0);
+  // const [heartRate, setHeartRate] = useState(0);
+  // const [heartRateECG, setHeartRateECG] = useState(0);
 
   // const [passValue, setpassValue] = useState(" ");
 
@@ -47,91 +47,78 @@ function Statform() {
       setProjects(temp_prj);
     });
   }, []);
-  console.log(projects);
+  // console.log(projects);
   // console.log(projects[0] ? projects[0].value[0].key : "Sorry No Project Item");
 
   return (
     <>
-      <div>
+      <div className="card_container_parent">
         {Object.keys(projects).map((item) => {
-          return Object.keys(projects[item].value).map((subitem) => {
-            console.log(projects[item].value[subitem].key);
-            return (
-              <div key={subitem}>
-                {" "}
-                <div>{projects[item].value[subitem].key}</div>
-                <div>{projects[item].value[subitem].value}</div>
-              </div>
-            );
-          });
-
+          let age = projects[item].value[0].value;
+          let gender = projects[item].value[1].value;
+          let heart_rate = projects[item].value[2].value;
+          let heart_rate_ecg = projects[item].value[3].value;
+          let name = projects[item].value[4].value;
+          let spo2 = projects[item].value[5].value;
           return (
-            <div key={item}>
-              <p>
-                {item}
-                <span>-----</span>
-                {projects[item].key}
-              </p>
+            <div key={item} className="card_container_parent">
+              <div class="card-container">
+                <div class="name_heading">{name}</div>
+
+                <img
+                  class="round"
+                  src="https://images.pexels.com/photos/3586798/pexels-photo-3586798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  alt="user"
+                />
+                <div>{gender}</div>
+                <div>{age}</div>
+                <div class="stats">
+                  <div>
+                    <div class="icon_stat">
+                      <SiOxygen />
+                    </div>{" "}
+                    {spo2}
+                  </div>
+                  <div>
+                    <div class="icon_stat">
+                      <AiFillHeart />
+                    </div>{" "}
+                    {heart_rate}
+                  </div>
+                  <div>
+                    <div class="icon_stat">
+                      <VscGraphLine />
+                    </div>{" "}
+                    {heart_rate_ecg}
+                  </div>
+                </div>
+
+                <div class="skills">
+                  <ul>
+                    <li>Blood Pressure</li>
+                    <li>Diabetes</li>
+                    <li>Breathing Problems</li>
+                    <li>Concussions</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* {Object.keys(projects[item].value).map((subitem) => {
+                console.log(projects[item].value[4].value);
+
+                return (
+                  <>
+                    <div key={subitem} className="stats">
+                      <div>{projects[item].value[subitem].key}</div>
+                      <div>{projects[item].value[subitem].value}</div>
+                    </div>
+                  </>
+                );
+              })} */}
             </div>
           );
         })}
       </div>
-      {/* <div>
-        {projects.map((first) => {
-          first.map((el) => {
-            el.map((key, value) => {
-              <div>
-                <h1>{key}</h1>
-                <h1>{value}</h1>
-              </div>;
-            });
-          });
-        })}
-      </div> */}
-      {/* <div>passValue: {passValue}</div> */}
-      {/* <div className="card_container_parent">
-        {" "}
-        <div class="card-container">
-          <div class="name_heading">{name}</div>
-
-          <img
-            class="round"
-            src="https://images.pexels.com/photos/3586798/pexels-photo-3586798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="user"
-          />
-          <div>{gender}</div>
-          <div>{age}</div>
-          <div class="stats">
-            <div>
-              <div class="icon_stat">
-                <SiOxygen />
-              </div>{" "}
-              {spo2}
-            </div>
-            <div>
-              <div class="icon_stat">
-                <AiFillHeart />
-              </div>{" "}
-              {heartRate}
-            </div>
-            <div>
-              <div class="icon_stat">
-                <VscGraphLine />
-              </div>{" "}
-              {heartRateECG}
-            </div>
-          </div>
-
-          <div class="skills">
-            <ul>
-              <li>Blood Pressure</li>
-              <li>Diabetes</li>
-              <li>Breathing Problems</li>
-              <li>Concussions</li>
-            </ul>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }
