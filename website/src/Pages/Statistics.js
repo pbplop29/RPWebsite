@@ -52,7 +52,7 @@ function Statistics() {
 
   return (
     <>
-      <div className="card_container_parent">
+      <div className="card_container_grand">
         {Object.keys(projects).map((item) => {
           let age = projects[item].value[0].value;
           let gender = projects[item].value[1].value;
@@ -60,16 +60,13 @@ function Statistics() {
           let heart_rate_ecg = projects[item].value[3].value;
           let name = projects[item].value[4].value;
           let spo2 = projects[item].value[5].value;
+          let zlink = projects[item].value[6].value;
           return (
             <div key={item} className="card_container_parent">
               <div class="card-container">
                 <div class="name_heading">{name}</div>
 
-                <img
-                  class="round"
-                  src="https://images.pexels.com/photos/3586798/pexels-photo-3586798.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  alt="user"
-                />
+                <img class="round" src={zlink} alt="user" />
                 <div>{gender}</div>
                 <div>{age}</div>
                 <div class="stats">

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../Config/firebase-config";
+import { db } from "../website/src/Config/firebase-config";
 import { onValue, ref } from "firebase/database";
 import { SiOxygen } from "react-icons/si";
 import { AiFillHeart } from "react-icons/ai";
