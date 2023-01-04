@@ -4,6 +4,16 @@ import { onValue, ref } from "firebase/database";
 import { SiOxygen } from "react-icons/si";
 import { AiFillHeart } from "react-icons/ai";
 import { VscGraphLine } from "react-icons/vsc";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
 import "../Styles/components.css";
 
@@ -27,13 +37,9 @@ function Statistics() {
   useEffect(() => {
     onValue(ref(db), (snapshot) => {
       var temp_prj = [];
-      //   let keylist = [];
-      //   let valuelist = [];
       snapshot.forEach(function (sonSnapshot) {
         var combined = [];
         sonSnapshot.forEach(function (childSnapshot) {
-          //   keylist.push(childSnapshot.key);
-          //   valuelist.push(childSnapshot.val());
           combined.push({
             key: childSnapshot.key,
             value: childSnapshot.val(),
@@ -61,8 +67,30 @@ function Statistics() {
           let name = projects[item].value[4].value;
           let spo2 = projects[item].value[5].value;
           let zlink = projects[item].value[6].value;
+          let zzgraph = projects[item].value[7];
+
+          let graphlist = [];
+          let index = 1;
+          {
+            Object.keys(zzgraph.value).map((id) => {
+              let current_graph_value = zzgraph.value[id];
+              graphlist.push({
+                key: index,
+                value: parseFloat(current_graph_value),
+              });
+              index = index + 1;
+            });
+          }
+          console.log(graphlist);
+
           return (
             <div key={item} className="card_container_parent">
+              <LineChart width={500} height={300} data={graphlist}>
+                <XAxis dataKey="key" />
+                <YAxis />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                <Line type="monotone" dataKey="value" stroke="#8884d8" />
+              </LineChart>
               <div class="card-container">
                 <div class="name_heading">{name}</div>
 
@@ -99,19 +127,6 @@ function Statistics() {
                   </ul>
                 </div>
               </div>
-
-              {/* {Object.keys(projects[item].value).map((subitem) => {
-                console.log(projects[item].value[4].value);
-
-                return (
-                  <>
-                    <div key={subitem} className="stats">
-                      <div>{projects[item].value[subitem].key}</div>
-                      <div>{projects[item].value[subitem].value}</div>
-                    </div>
-                  </>
-                );
-              })} */}
             </div>
           );
         })}
