@@ -4,6 +4,7 @@ import { onValue, ref } from "firebase/database";
 import { SiOxygen } from "react-icons/si";
 import { AiFillHeart } from "react-icons/ai";
 import { VscGraphLine } from "react-icons/vsc";
+
 import {
   LineChart,
   Line,
@@ -14,6 +15,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+
+import ApexCharts from "react-apexcharts";
 
 import "../Styles/components.css";
 
@@ -70,26 +73,121 @@ function Statistics() {
           let zzgraph = projects[item].value[7];
 
           let graphlist = [];
-          let index = 1;
+          let graphlist2 = [];
+          let graphlist3 = [];
+          let index = 0;
           {
             Object.keys(zzgraph.value).map((id) => {
               let current_graph_value = zzgraph.value[id];
               graphlist.push({
-                key: index,
-                value: parseFloat(current_graph_value),
+                x: index,
+                y: parseFloat(current_graph_value),
               });
+              graphlist2.push(parseFloat(current_graph_value));
+              graphlist3.push(index);
               index = index + 1;
             });
           }
-          console.log(graphlist);
+          // console.log(graphlist);
+          // console.log(graphlist2);
+          // console.log(graphlist3);
+
+          const series = [
+            {
+              name: "PPG",
+              data: graphlist2,
+            },
+          ];
+
+          const options = {
+            chart: {
+              id: "realtime",
+              height: 350,
+              width: 300,
+              type: "line",
+              animations: {
+                enabled: true,
+                easing: "linear",
+                dynamicAnimation: {
+                  speed: 1000,
+                },
+              },
+              toolbar: {
+                show: true,
+              },
+              zoom: {
+                enabled: false,
+              },
+            },
+            dataLabels: {
+              enabled: false,
+            },
+            grid: {
+              row: {
+                colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+                opacity: 0.1,
+              },
+            },
+            stroke: {
+              curve: "smooth",
+              width: 1.5,
+            },
+            title: {
+              text: "PPG Graph",
+              align: "center",
+            },
+            markers: {
+              size: 0,
+            },
+            xaxis: {
+              type: " numeric ",
+              range: 20,
+              min: 0,
+              max: 20,
+              show: true,
+              labels: {
+                show: false,
+              },
+              axisBorder: {
+                show: true,
+              },
+              axisTicks: {
+                show: true,
+              },
+            },
+            yaxis: {
+              show: true,
+              labels: {
+                show: true,
+              },
+              axisBorder: {
+                show: false,
+              },
+              axisTicks: {
+                show: false,
+              },
+            },
+            legend: {
+              show: true,
+            },
+          };
 
           return (
             <div key={item} className="card_container_parent">
+              <div id="chart">
+                <ApexCharts
+                  options={options}
+                  series={series}
+                  type="line"
+                  height={350}
+                />
+              </div>
+
               <LineChart width={500} height={300} data={graphlist}>
-                <XAxis dataKey="key" />
+                <XAxis dataKey="x" />
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                <Line type="monotone" dataKey="y" stroke="#8884d8" />
               </LineChart>
               <div class="card-container">
                 <div class="name_heading">{name}</div>
