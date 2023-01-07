@@ -88,14 +88,32 @@ function Statistics() {
             index = index + 1;
           });
 
-          // console.log(graphlist);
-          // console.log(graphlist2);
-          // console.log(graphlist3);
+          let zzzgraph = projects[item].value[8];
+
+          let graphlistx = [];
+          let graphlist2x = [];
+          let graphlist3x = [];
+          let indexx = 0;
+
+          Object.keys(zzzgraph.value).map((id) => {
+            let current_graph_value = zzzgraph.value[id];
+            graphlistx.push({
+              x: index,
+              y: parseFloat(current_graph_value),
+            });
+            graphlist2x.push(parseFloat(current_graph_value));
+            graphlist3x.push(index);
+            indexx = indexx + 1;
+          });
 
           const series = [
             {
               name: "PPG",
               data: graphlist2,
+            },
+            {
+              name: "EKG",
+              data: graphlist2x,
             },
           ];
 
@@ -131,12 +149,12 @@ function Statistics() {
               },
             },
             stroke: {
-              colors: ["#FF8100"],
+              colors: ["#008FFB", "#00E396"],
               curve: "smooth",
               width: 1.8,
             },
             title: {
-              text: "PPG Signal",
+              text: "PPG & EKG Monitor",
               align: "center",
 
               style: {
@@ -187,6 +205,9 @@ function Statistics() {
             },
             legend: {
               show: true,
+              labels: {
+                colors: "#ABEB83",
+              },
             },
           };
 
@@ -241,7 +262,7 @@ function Statistics() {
                   series={series}
                   type="line"
                   height={460}
-                  width={700}
+                  width={800}
                 />
               </div>
             </div>
