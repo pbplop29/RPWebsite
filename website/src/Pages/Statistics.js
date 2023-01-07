@@ -102,8 +102,7 @@ function Statistics() {
           const options = {
             chart: {
               id: "realtime",
-              height: 350,
-              width: 300,
+
               type: "line",
               animations: {
                 enabled: true,
@@ -141,9 +140,9 @@ function Statistics() {
             },
             xaxis: {
               type: " numeric ",
-              range: 20,
+              range: 50,
               min: 0,
-              max: 20,
+              max: 50,
               show: true,
               labels: {
                 show: false,
@@ -174,14 +173,13 @@ function Statistics() {
 
           return (
             <div key={item} className="card_container_parent">
-              <div id="chart">
-                <ApexCharts
-                  options={options}
-                  series={series}
-                  type="line"
-                  height={350}
-                />
-              </div>
+              <ApexCharts
+                options={options}
+                series={series}
+                type="line"
+                height={300}
+                width={700}
+              />
 
               <LineChart width={500} height={300} data={graphlist}>
                 <XAxis dataKey="x" />
