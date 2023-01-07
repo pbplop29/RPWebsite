@@ -102,7 +102,6 @@ function Statistics() {
           const options = {
             chart: {
               id: "realtime",
-
               type: "line",
               animations: {
                 enabled: true,
@@ -126,14 +125,23 @@ function Statistics() {
                 colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
                 opacity: 0.1,
               },
+              column: {
+                colors: ["#f3f3f3", "transparent"],
+                opacity: 0.1,
+              },
             },
             stroke: {
+              colors: ["#FF8100"],
               curve: "smooth",
-              width: 1.5,
+              width: 1.8,
             },
             title: {
-              text: "PPG Graph",
+              text: "PPG Signal",
               align: "center",
+
+              style: {
+                color: "#ABEB83",
+              },
             },
             markers: {
               size: 0,
@@ -147,6 +155,7 @@ function Statistics() {
               labels: {
                 show: false,
               },
+
               axisBorder: {
                 show: true,
               },
@@ -155,9 +164,19 @@ function Statistics() {
               },
             },
             yaxis: {
+              type: " numeric ",
               show: true,
+              // title: {
+              //   text: "PPG",
+              //   style: {
+              //     color: "#ABEB83",
+              //   },
+              // },
               labels: {
                 show: true,
+                style: {
+                  colors: ["#ABEB83"],
+                },
               },
               axisBorder: {
                 show: false,
@@ -173,20 +192,22 @@ function Statistics() {
 
           return (
             <div key={item} className="card_container_parent">
-              <ApexCharts
-                options={options}
-                series={series}
-                type="line"
-                height={300}
-                width={700}
-              />
-
-              <LineChart width={500} height={300} data={graphlist}>
+              <div class="graph-container">
+                <ApexCharts
+                  options={options}
+                  series={series}
+                  type="line"
+                  height={300}
+                  width={700}
+                />
+              </div>
+              {/* Line chart from React Recharts */}
+              {/* <LineChart width={500} height={300} data={graphlist}>
                 <XAxis dataKey="x" />
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
                 <Line type="monotone" dataKey="y" stroke="#8884d8" />
-              </LineChart>
+              </LineChart> */}
               <div class="card-container">
                 <div class="name_heading">{name}</div>
 
