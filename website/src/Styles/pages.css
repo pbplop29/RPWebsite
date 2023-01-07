@@ -38,7 +38,7 @@
     justify-content: center;
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }   
 
 .round{
@@ -47,28 +47,28 @@
 }
 
 .card-container {
-    margin: 2rem;
+  margin: 2rem;
   position: relative;
   background-color: #231E39;
   border-radius: 10px;
   box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
   color: #B3B8CD;
   padding-top: 30px;
-
   width: 350px;
   max-width: 100%;
   text-align: center;
+
 }
 
 
 .graph-container{
-  margin: 2rem;
+  height: inherit;
+  margin: 1rem;
   background-color: #231E39;
   border-radius: 10px;
   box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
   padding-top: 30px;
   padding-right: 30px;
-
 }
 
 

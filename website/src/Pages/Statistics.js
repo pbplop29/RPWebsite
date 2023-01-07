@@ -5,16 +5,16 @@ import { SiOxygen } from "react-icons/si";
 import { AiFillHeart } from "react-icons/ai";
 import { VscGraphLine } from "react-icons/vsc";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+// import {
+//   LineChart,
+//   Line,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   Legend,
+//   ResponsiveContainer,
+// } from "recharts";
 
 import ApexCharts from "react-apexcharts";
 
@@ -76,18 +76,18 @@ function Statistics() {
           let graphlist2 = [];
           let graphlist3 = [];
           let index = 0;
-          {
-            Object.keys(zzgraph.value).map((id) => {
-              let current_graph_value = zzgraph.value[id];
-              graphlist.push({
-                x: index,
-                y: parseFloat(current_graph_value),
-              });
-              graphlist2.push(parseFloat(current_graph_value));
-              graphlist3.push(index);
-              index = index + 1;
+
+          Object.keys(zzgraph.value).map((id) => {
+            let current_graph_value = zzgraph.value[id];
+            graphlist.push({
+              x: index,
+              y: parseFloat(current_graph_value),
             });
-          }
+            graphlist2.push(parseFloat(current_graph_value));
+            graphlist3.push(index);
+            index = index + 1;
+          });
+
           // console.log(graphlist);
           // console.log(graphlist2);
           // console.log(graphlist3);
@@ -192,15 +192,6 @@ function Statistics() {
 
           return (
             <div key={item} className="card_container_parent">
-              <div class="graph-container">
-                <ApexCharts
-                  options={options}
-                  series={series}
-                  type="line"
-                  height={300}
-                  width={700}
-                />
-              </div>
               {/* Line chart from React Recharts */}
               {/* <LineChart width={500} height={300} data={graphlist}>
                 <XAxis dataKey="x" />
@@ -243,6 +234,15 @@ function Statistics() {
                     <li>Concussions</li>
                   </ul>
                 </div>
+              </div>
+              <div class="graph-container">
+                <ApexCharts
+                  options={options}
+                  series={series}
+                  type="line"
+                  height={460}
+                  width={700}
+                />
               </div>
             </div>
           );
