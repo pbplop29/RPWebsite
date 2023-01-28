@@ -154,7 +154,7 @@ function Statistics() {
               width: 1.8,
             },
             title: {
-              text: "PPG & EKG Monitor",
+              text: name,
               align: "center",
 
               style: {
@@ -166,12 +166,12 @@ function Statistics() {
             },
             xaxis: {
               type: " numeric ",
-              range: 50,
+              range: 10,
               min: 0,
-              max: 50,
+
               show: true,
               labels: {
-                show: false,
+                show: true,
               },
 
               axisBorder: {

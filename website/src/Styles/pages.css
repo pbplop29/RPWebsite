@@ -65,7 +65,7 @@
   height: inherit;
   margin: 1rem;
   background-color: #231E39;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0 ;
   box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
   padding-top: 30px;
   padding-right: 30px;
