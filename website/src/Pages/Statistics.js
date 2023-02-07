@@ -56,9 +56,9 @@ function Statistics() {
       setProjects(temp_prj);
     });
   }, []);
-  // console.log(projects);
+  //console.log(projects);
   // console.log(projects[0] ? projects[0].value[0].key : "Sorry No Project Item");
-
+  let graphlistxx = [];
   return (
     <>
       <div className="card_container_grand">
@@ -105,11 +105,25 @@ function Statistics() {
             graphlist3x.push(index);
             indexx = indexx + 1;
           });
+          //Added
+          var zzzzgraph = projects[item].value[9].value;
+          //console.log(zzzzgraph);
+
+          //console.log(graphlistxx);
+          let floats = zzzzgraph.toString().split("^");
+          //console.log(floats);
+          for (let i = 0; i < floats.length; i++) {
+            graphlistxx.push(parseFloat(floats[i]));
+          }
+
+          console.log(graphlistxx);
+
+          // Added
 
           const series = [
             {
               name: "PPG",
-              data: graphlist2,
+              data: graphlistxx,
             },
             {
               name: "EKG",
@@ -166,12 +180,12 @@ function Statistics() {
             },
             xaxis: {
               type: " numeric ",
-              range: 10,
+              range: 500,
               min: 0,
 
               show: true,
               labels: {
-                show: true,
+                show: false,
               },
 
               axisBorder: {
