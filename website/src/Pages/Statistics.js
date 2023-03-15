@@ -151,6 +151,7 @@ function Statistics() {
             chart: {
               id: "realtime",
               type: "line",
+              background: "#231E39",
               animations: {
                 enabled: true,
                 easing: "linear",

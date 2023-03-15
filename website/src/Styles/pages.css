@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&family=Roboto:wght@900&display=swap');
 
 .stats{
     margin-top:0.25rem;
@@ -101,4 +102,79 @@
   margin: 0 7px 7px 0;
   padding: 7px;
   font-family: 'Roboto', sans-serif;
+}
+
+
+
+.container {
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+.image {
+  outline:0.2rem solid #231E39;
+  border-left: 0.2rem solid #ABEB83 ;
+  border-top: 0.2rem solid #ABEB83;
+  
+  margin:0;
+  max-width:30%;
+  border-radius: 20%;
+}
+
+.heading {
+  text-shadow:
+    -1.5px -1.5px 0 #ABEB83,
+   
+    -1.5px 1.5px 0 #ABEB83;
+  
+  color: #231E39;
+  margin: 3rem auto 3rem auto;
+  font-size: 5rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.paragraph-boxes-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paragraph-box {
+  width: 60%;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 20px 0 20px 20px;
+  background-color: #231E39;
+  border-left: 0.2rem solid #ABEB83 ;
+  border-top: 0.2rem solid #ABEB83;
+  box-sizing: border-box;
+  transition: transform 0.2s ease-out;
+}
+
+.align-left {
+  color:white;
+  font-family: 'PT Serif', serif;
+
+  width: 40vw;
+  text-align: justify;
+
+  transform: translateX(-60%);
+}
+
+.align-right {
+  color:white;
+  font-family: 'PT Serif', serif;
+
+  width: 40vw;
+  text-align: justify;
+
+  transform: translateX(60%);
+}
+
+.align-right:nth-of-type(even),
+.align-left:nth-of-type(odd) {
+  transform: none;
 }
