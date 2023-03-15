@@ -58,7 +58,7 @@ function Statistics() {
   }, []);
   //console.log(projects);
   // console.log(projects[0] ? projects[0].value[0].key : "Sorry No Project Item");
-  let graphlistxx = [];
+
   return (
     <>
       <div className="card_container_grand">
@@ -70,65 +70,81 @@ function Statistics() {
           let name = projects[item].value[4].value;
           let spo2 = projects[item].value[5].value;
           let zlink = projects[item].value[6].value;
-          let zzgraph = projects[item].value[7];
 
-          let graphlist = [];
-          let graphlist2 = [];
-          let graphlist3 = [];
+          let zzzgraph = projects[item].value[7];
+
+          let PPG_combined_list = [];
+          let PPG_values_list = [];
+          let PPG_index_list = [];
           let index = 0;
 
-          Object.keys(zzgraph.value).map((id) => {
-            let current_graph_value = zzgraph.value[id];
-            graphlist.push({
+          Object.keys(zzzgraph.value).map((id) => {
+            let current_graph_value = parseInt(zzzgraph.value[id]);
+            PPG_combined_list.push({
               x: index,
               y: parseFloat(current_graph_value),
             });
-            graphlist2.push(parseFloat(current_graph_value));
-            graphlist3.push(index);
+            let a = Math.floor(current_graph_value / 1000000);
+            let b = current_graph_value % 1000000;
+            let c = b / 1000;
+            let d = b % 1000;
+            PPG_values_list.push(parseInt(a));
+            PPG_values_list.push(parseInt(c));
+            PPG_values_list.push(parseInt(d));
+            PPG_index_list.push(index);
             index = index + 1;
           });
 
-          let zzzgraph = projects[item].value[8];
+          // let zzzgraph = projects[item].value[8];
 
-          let graphlistx = [];
-          let graphlist2x = [];
-          let graphlist3x = [];
-          let indexx = 0;
+          // let EKG_combined_list = [];
+          // let EKG_values_list = [];
+          // let EKG_index_list = [];
+          // let indexx = 0;
 
-          Object.keys(zzzgraph.value).map((id) => {
-            let current_graph_value = zzzgraph.value[id];
-            graphlistx.push({
-              x: index,
-              y: parseFloat(current_graph_value),
-            });
-            graphlist2x.push(parseFloat(current_graph_value));
-            graphlist3x.push(index);
-            indexx = indexx + 1;
-          });
+          // Object.keys(zzzgraph.value).map((id) => {
+          //   let current_graph_value = zzzgraph.value[id];
+          //   EKG_combined_list.push({
+          //     x: index,
+          //     y: parseFloat(current_graph_value),
+          //   });
+          //   EKG_values_list.push(parseFloat(current_graph_value));
+          //   EKG_index_list.push(index);
+          //   indexx = indexx + 1;
+          // });
+
+          // console.log(EKG_values_list);
+
           //Added
-          var zzzzgraph = projects[item].value[9].value;
-          //console.log(zzzzgraph);
+          // let PPG_string_list = [];
+          // var zzzzgraph = projects[item].value[9].value;
 
-          //console.log(graphlistxx);
-          let floats = zzzzgraph.toString().split("^");
-          //console.log(floats);
-          for (let i = 0; i < floats.length; i++) {
-            graphlistxx.push(parseFloat(floats[i]));
-          }
+          // let zzzzGraphString = zzzzgraph.toString();
+          // zzzzGraphString = zzzzGraphString.substring(
+          //   0,
+          //   zzzzGraphString.length - 1
+          // );
 
-          console.log(graphlistxx);
+          // //console.log(zzzzGraphString);
+          // let floats = zzzzGraphString.split("^");
+          // //console.log(floats);
+          // for (let i = 0; i < 200; i++) {
+          //   PPG_string_list.push(parseFloat(floats[i]));
+          // }
 
-          // Added
+          //console.log(PPG_string_list);
+
+          //`Added
 
           const series = [
             {
               name: "PPG",
-              data: graphlistxx,
+              data: PPG_values_list,
             },
-            {
-              name: "EKG",
-              data: graphlist2x,
-            },
+            // {
+            //   name: "EKG",
+            //   data: EKG_values_list,
+            // },
           ];
 
           const options = {
@@ -151,6 +167,7 @@ function Statistics() {
             },
             dataLabels: {
               enabled: false,
+              //buffer: 100,
             },
             grid: {
               row: {
@@ -165,7 +182,7 @@ function Statistics() {
             stroke: {
               colors: ["#008FFB", "#00E396"],
               curve: "smooth",
-              width: 1.8,
+              width: 2,
             },
             title: {
               text: name,
@@ -180,7 +197,7 @@ function Statistics() {
             },
             xaxis: {
               type: " numeric ",
-              range: 500,
+              range: 125,
               min: 0,
 
               show: true,
@@ -198,6 +215,8 @@ function Statistics() {
             yaxis: {
               type: " numeric ",
               show: true,
+              min: 600,
+              max: 660,
               // title: {
               //   text: "PPG",
               //   style: {
@@ -228,7 +247,7 @@ function Statistics() {
           return (
             <div key={item} className="card_container_parent">
               {/* Line chart from React Recharts */}
-              {/* <LineChart width={500} height={300} data={graphlist}>
+              {/* <LineChart width={500} height={300} data={PPG_combined_list}>
                 <XAxis dataKey="x" />
                 <YAxis />
                 <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
