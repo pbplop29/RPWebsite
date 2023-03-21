@@ -24,24 +24,15 @@ function Navmenu() {
             </li>
 
             <li>
-              <a href="/about">about</a>
-            </li>
-            <li>
-              <a href="/contact">contact</a>
+              <a href="/statistics">statistics</a>
             </li>
           </ul>
           <ul class="menu-links">
-            <li>
-              <a href="/profile">profile</a>
-            </li>
-            <li>
-              <a href="/statistics">statistics</a>
-            </li>
-            <li>
+            {/* <li>
               <button className="logout-btn" href="">
                 logout
               </button>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>

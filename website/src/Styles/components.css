@@ -14,12 +14,13 @@
   top: 1vh;
   left: 1vw;
   padding-bottom: 2vh;
+  position: fixed;
 }
 
 .hamburger-icon span {
   height: 5px;
   width: 40px;
-  background-color: black;
+  background-color: #2F5D62;
   display: block;
   margin: 5px 0px 5px 0px;
   transition: 0.7s ease-in-out;
@@ -41,13 +42,13 @@ display: none;
 #openmenu:checked ~ .hamburger-icon span:nth-of-type(2) {
   
   transform: translate(0%, 175%) rotate(-45deg);
-  background-color: white;
+  background-color: #A7C4BC;
 }
 
 #openmenu:checked ~ .hamburger-icon span:nth-of-type(3) {
   
   transform: rotate(45deg);
-  background-color: white;
+  background-color: #A7C4BC;
 }
 
 #openmenu:checked ~ .hamburger-icon span:nth-of-type(1) {
@@ -61,8 +62,8 @@ display: none;
 }
 
 div.menu-pane {
-  background-color: black;
-  position: absolute;
+  background-color: #2F5D62;
+  position: fixed;
   transform: translateX(-105vw);
   transform-origin: (0, 0);
   width: 100vw;
@@ -82,11 +83,13 @@ div.menu-pane {
 
 .menu-links li, a, span {
       transition: 0.5s ease-in-out;
+      color:#DFEEEA;
 }
 
 .menu-pane ul {
   padding: 10%;
   display: inline-block;
+  list-style-type: none;  
 }
 
 .menu-pane li {
@@ -101,13 +104,13 @@ div.menu-pane {
 
 
 .menu-links li a {
-  color: white;
+  color: #A7C4BC;
   text-decoration: none;
 }
 
 
 .menu-links li:hover a {
-  color: #FFAB91;
+  color: white;
 }
 
 .logout-btn{
@@ -200,48 +203,5 @@ input.hamburger-checkbox {
     height: 2rem;
 }
 
-.card-container {
-    margin:2rem;
-  position: relative;
-  background-color: #231E39;
-  border-radius: 10px;
-  box-shadow: 0px 10px 20px -10px rgba(0,0,0,0.75);
-  color: #B3B8CD;
-  padding-top: 30px;
 
-  width: 350px;
-  max-width: 100%;
-  text-align: center;
-}
-
-
-.card-container .round {
-  border: 1px solid #ABEB83;
-  border-radius: 50%;
-  padding: 7px;
-}
-
-
-.skills {
-  background-color: #1F1A36;
-  text-align: left;
-  padding: 15px;
-
-}
-
-.skills ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.skills ul li {
-  border: 1px solid #2D2747;
-  border-radius: 2px;
-  display: inline-block;
-  font-size: 12px;
-  margin: 0 7px 7px 0;
-  padding: 7px;
-  font-family: 'Roboto', sans-serif;
-}
 

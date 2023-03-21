@@ -151,7 +151,7 @@ function Statistics() {
             chart: {
               id: "realtime",
               type: "line",
-              background: "#231E39",
+              background: "#DFEEEA",
               animations: {
                 enabled: true,
                 easing: "linear",
@@ -172,29 +172,29 @@ function Statistics() {
             },
             grid: {
               row: {
-                colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+                colors: ["#2F5D62"], // takes an array which will be repeated on columns
                 opacity: 0.1,
               },
               column: {
-                colors: ["#f3f3f3", "transparent"],
+                colors: ["#2F5D62", "transparent"],
                 opacity: 0.1,
               },
             },
             stroke: {
-              colors: ["#008FFB", "#00E396"],
+              colors: ["#222266", "#821D3F"],
               curve: "smooth",
-              width: 2,
+              width: 1.5,
             },
             title: {
-              text: name,
+              text: "PPG and ECG",
               align: "center",
 
               style: {
-                color: "#ABEB83",
+                color: "#2F5D62",
               },
             },
             markers: {
-              size: 0,
+              size: 0.25,
             },
             xaxis: {
               type: " numeric ",
@@ -227,7 +227,7 @@ function Statistics() {
               labels: {
                 show: true,
                 style: {
-                  colors: ["#ABEB83"],
+                  colors: ["#2F5D62"],
                 },
               },
               axisBorder: {
@@ -240,7 +240,7 @@ function Statistics() {
             legend: {
               show: true,
               labels: {
-                colors: "#ABEB83",
+                colors: "#2F5D62",
               },
             },
           };
