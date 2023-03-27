@@ -163,7 +163,7 @@ function Statistics() {
                 show: true,
               },
               zoom: {
-                enabled: false,
+                enabled: true,
               },
             },
             dataLabels: {
@@ -194,7 +194,7 @@ function Statistics() {
               },
             },
             markers: {
-              size: 0.25,
+              size: 0,
             },
             xaxis: {
               type: " numeric ",
@@ -216,8 +216,8 @@ function Statistics() {
             yaxis: {
               type: " numeric ",
               show: true,
-              min: 600,
-              max: 660,
+              min: 550,
+              max: 650,
               // title: {
               //   text: "PPG",
               //   style: {

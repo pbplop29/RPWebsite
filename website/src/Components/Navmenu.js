@@ -26,6 +26,9 @@ function Navmenu() {
             <li>
               <a href="/statistics">statistics</a>
             </li>
+            <li>
+              <a href="/create_patient">patient entry</a>
+            </li>
           </ul>
           <ul class="menu-links">
             {/* <li>

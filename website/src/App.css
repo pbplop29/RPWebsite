@@ -2,6 +2,8 @@
 
 body{
     background-color: #A7C4BC;
+    /* background-image: url("./Assets/finalBg.jpg") ; */
+    background-size: cover;
 }
 body::-webkit-scrollbar {
     display: none;

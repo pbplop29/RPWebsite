@@ -1,207 +1,275 @@
-@import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text:400,700&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+  .body-text {
+    padding-top: 20vh;
+    text-align: center;
+    position: relative;
+  }
+
+  .hamburger-icon {
+    position: absolute;
+    z-index: 2;
+    top: 1vh;
+    left: 1vw;
+    padding-bottom: 2vh;
+    position: fixed;
+  }
+
+  .hamburger-icon span {
+    height: 5px;
+    width: 40px;
+    background-color: #2F5D62;
+    display: block;
+    margin: 5px 0px 5px 0px;
+    transition: 0.7s ease-in-out;
+    transform: none;
+    
+  }
+
+  #openmenu:checked ~ .menu-pane {
+    
+    left: -5vw;
+    transform: translateX(-5vw);
+  }
+
+  #openmenu:checked ~ .body-text {
+    
+  display: none;
+  }
+
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(2) {
+    
+    transform: translate(0%, 175%) rotate(-45deg);
+    background-color: #A7C4BC;
+  }
+
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(3) {
+    
+    transform: rotate(45deg);
+    background-color: #A7C4BC;
+  }
+
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(1) {
+    
+    opacity: 0;
+  }
+
+  #openmenu:checked ~ .hamburger-icon span:nth-of-type(4) {
+    
+    opacity: 0;
+  }
+
+  div.menu-pane {
+    background-color: #2F5D62;
+    position: fixed;
+    transform: translateX(-105vw);
+    transform-origin: (0, 0);
+    width: 100vw;
+    height: 97vh;
+  z-index: 1;
+    transition: 0.5s ease-in-out;
+  }
+
+  .menu-pane p {
+    color: black;
+    font-size: 0.6em;
+  }
+
+  .menu-pane nav {
+    padding: 0% 0% 0% 10% ;
+  }
+
+  .menu-links li, a, span {
+        transition: 0.5s ease-in-out;
+        color:#DFEEEA;
+  }
+
+  .menu-pane ul {
+    padding: 10%;
+    display: inline-block;
+    list-style-type: none;  
+  }
+
+  .menu-pane li {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-left: 10px;
+      font-size: 2em;
+  }
 
 
 
-.body-text {
-  padding-top: 20vh;
-  text-align: center;
-  position: relative;
-}
-
-.hamburger-icon {
-  position: absolute;
-  z-index: 2;
-  top: 1vh;
-  left: 1vw;
-  padding-bottom: 2vh;
-  position: fixed;
-}
-
-.hamburger-icon span {
-  height: 5px;
-  width: 40px;
-  background-color: #2F5D62;
-  display: block;
-  margin: 5px 0px 5px 0px;
-  transition: 0.7s ease-in-out;
-  transform: none;
-  
-}
-
-#openmenu:checked ~ .menu-pane {
-  
-  left: -5vw;
-  transform: translateX(-5vw);
-}
-
-#openmenu:checked ~ .body-text {
-  
-display: none;
-}
-
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(2) {
-  
-  transform: translate(0%, 175%) rotate(-45deg);
-  background-color: #A7C4BC;
-}
-
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(3) {
-  
-  transform: rotate(45deg);
-  background-color: #A7C4BC;
-}
-
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(1) {
-  
-  opacity: 0;
-}
-
-#openmenu:checked ~ .hamburger-icon span:nth-of-type(4) {
-  
-  opacity: 0;
-}
-
-div.menu-pane {
-  background-color: #2F5D62;
-  position: fixed;
-  transform: translateX(-105vw);
-  transform-origin: (0, 0);
-  width: 100vw;
-  height: 97vh;
- z-index: 1;
-  transition: 0.5s ease-in-out;
-}
-
-.menu-pane p {
-  color: black;
-  font-size: 0.6em;
-}
-
-.menu-pane nav {
-  padding: 0% 0% 0% 10% ;
-}
-
-.menu-links li, a, span {
-      transition: 0.5s ease-in-out;
-      color:#DFEEEA;
-}
-
-.menu-pane ul {
-  padding: 10%;
-  display: inline-block;
-  list-style-type: none;  
-}
-
-.menu-pane li {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-left: 10px;
-    font-size: 2em;
-}
 
 
-
-
-
-.menu-links li a {
-  color: #A7C4BC;
-  text-decoration: none;
-}
-
-
-.menu-links li:hover a {
-  color: white;
-}
-
-.logout-btn{
-    font-family: Libre Caslon Text;
-    text-align: left;
-    border: none;
-    font-size: 0.9em;
-    background-color: transparent;
-    color: white;
+  .menu-links li a {
+    color: #A7C4BC;
     text-decoration: none;
-    transition: 0.5s ease;
-}
+  }
 
 
-.logout-btn:hover{
-    color: red;
-    transition: 0.5s ease;
+  .menu-links li:hover a {
+    color: white;
+  }
 
-}
-
-
-
-
-input.hamburger-checkbox {
-  position: absolute;
-  z-index: 3;
-  top: 5vh;
-  left: 5vw;
-  width: 10vw;
-  opacity: 0;
-
-}
+  .logout-btn{
+      font-family: Libre Caslon Text;
+      text-align: left;
+      border: none;
+      font-size: 0.9em;
+      background-color: transparent;
+      color: white;
+      text-decoration: none;
+      transition: 0.5s ease;
+  }
 
 
+  .logout-btn:hover{
+      color: red;
+      transition: 0.5s ease;
+
+  }
 
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
-.stats{
-    margin-top:0.25rem;
-    justify-content: center;
-    text-align:center;
-    padding: 1rem 0;
-    display: flex   ;
-}
 
-.stats>*{
-    margin:0 1rem ;
-    font-size: 0.9rem;
-}
+  input.hamburger-checkbox {
+    position: absolute;
+    z-index: 3;
+    top: 5vh;
+    left: 5vw;
+    width: 10vw;
+    opacity: 0;
 
-.icon_stat{
+  }
+
+
+
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
+
+  .stats{
+      margin-top:0.25rem;
+      justify-content: center;
+      text-align:center;
+      padding: 1rem 0;
+      display: flex   ;
+  }
+
+  .stats>*{
+      margin:0 1rem ;
+      font-size: 0.9rem;
+  }
+
+  .icon_stat{
+      color:#ABEB83;
+      font-size: 1.5rem;
+  }
+
+
+
+
+  .name_heading {
+      margin-bottom: 1rem;
+      font-family: 'Roboto', sans-serif;  
+      font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
     color:#ABEB83;
-    font-size: 1.5rem;
-}
+        
+  }
 
-
-
-
-.name_heading {
-    margin-bottom: 1rem;
-    font-family: 'Roboto', sans-serif;  
-    font-weight: bold;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  color:#ABEB83;
-      
-}
-
-.card_container_grand{
-  align-items: left;
-  justify-content: left;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}  
-
-.card_container_parent{
-    align-items: center;
-    justify-content: center;
+  .card_container_grand{
+    align-items: left;
+    justify-content: left;
     position: relative;
     display: flex;
     flex-direction: column;
-}   
+  }  
+
+  .card_container_parent{
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+  }   
 
 
-.round{
-    width:2rem;
-    height: 2rem;
-}
+  .round{
+      width:2rem;
+      height: 2rem;
+  }
+
+
+  .wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+  .patient_form_title{
+    color:#2F5D62;
+    letter-spacing: -3px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+  }
+  .patient_entry_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin:-1rem auto;
+    border-radius: 2%;
+    box-sizing: border-box;
+    height: auto;
+    align-self: flex-start; /* limit height to content */
+    padding: 3rem 5rem 3rem 5rem;
+    background-color: #DFEEEA;
+    border: 1.2px dashed #2F5D62;
+  }
+
+
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+  }
+
+  label {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #2F5D62;
+    letter-spacing: 0.2rem;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+  outline:none;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px dotted #2F5D62;
+  }
+
+  button[type="submit"] {
+    margin-top: 1rem;
+    height: 3rem;
+    width:auto;
+    background-color: #2F5D62;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+
+
 
 
 
