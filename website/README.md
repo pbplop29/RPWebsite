@@ -90,6 +90,7 @@ The fingerprints can be acquired in the following ways. Please try all the ways 
 - Click the lock icon on the top present near the site URL.
 - Click on it and click on **_Connection is Secure_**
 - Click on **_Certificate is valid_** and copy the fingerprints from the bottom.
+
   ![Fingerprint](https://i.ibb.co/NWn1yrX/IRDa-QGmi-JV.png)
   ![Fingerprint](https://i.ibb.co/mS8psZf/LRBs-Kl2fng.png)
   ![Fingerprint](https://i.ibb.co/kDC6fFK/brave-N6-Mvgx-XJEp.png)
