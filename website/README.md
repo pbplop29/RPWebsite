@@ -71,6 +71,12 @@ const analytics = getAnalytics(app);
 
 Fingerprint of the realtime database will be crucial in connecting to the ESP-32 module. It will be needed to be input in the file present at path **_"Documents\Arduino\libraries\firebase-arduino-master\src"_** called **_FirebaseHttpClient.c_**. This will help establish and secure the connection.
 
+Fingerprint will look something like:
+
+```js
+C3:FB:91:85:CC:6B:4C:7D:E7:18:ED:D8:00:D2:84:E7:6E:97:06:07
+```
+
 The fingerprints can be acquired in the following ways. Please try all the ways till you find the one that works for you.
 
 ### _Method-1_
@@ -97,3 +103,19 @@ The fingerprints can be acquired in the following ways. Please try all the ways 
   <br>
   ![Fingerprint](https://i.ibb.co/kDC6fFK/brave-N6-Mvgx-XJEp.png)
   <br>
+
+# Arduino
+
+## **_Interfacing_**
+
+We have used Arduino Mega as the main computing block. An ESP-32 module is connected to it for providing internet access and operations. A Nellcor DS-100A probe is used for SpO2 measurement. An AD8232 module is used for the ECG measurement.
+The block diagram of the whole interface looks like:
+<br>
+![Block Diagram](https://i.ibb.co/BKzXg7h/brave-6lnry-WVDGH.png)
+
+If more information on hardware, principles and interfacing is needed, please refer to the following paper:
+
+> A. Singh, S. K. Kar and V. K. Sinha, "Real-time Voltage Mode Pulse Oximetry System," 2022 IEEE 19th India Council International Conference (INDICON), Kochi, India, 2022, pp. 1-6, doi: 10.1109/INDICON56171.2022.10039890.
+> **_"https://ieeexplore.ieee.org/document/10039890"_**.
+
+## **_Arduino Mega_**
