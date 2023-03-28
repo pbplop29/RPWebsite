@@ -216,8 +216,8 @@ function Statistics() {
             yaxis: {
               type: " numeric ",
               show: true,
-              min: 550,
-              max: 650,
+              min: 650,
+              max: 750,
               // title: {
               //   text: "PPG",
               //   style: {
