@@ -51,17 +51,18 @@ function Create() {
         (snapshot) => {
           const percent = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          ); // update progress
+          );
           setPercent(percent);
         },
-        (err) => console.log(err),
-        () => {
-          // download url
-          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-            setUrlx(url);
-            console.log(urlx);
-          });
-        }
+        (
+            err //console.log(err),
+          ) =>
+          () => {
+            // download url
+            getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+              setUrlx(url);
+            });
+          }
       );
       // Set the name, age, and gender fields of the new document
       await set(ref(db, id), {
@@ -74,11 +75,8 @@ function Create() {
         zlink: urlx,
       });
 
-      console.log("Patient data added successfully");
       setPatient(INITIAL_STATE);
-    } catch (error) {
-      console.error("Error adding or updating patient data", error);
-    }
+    } catch (error) {}
   };
 
   return (

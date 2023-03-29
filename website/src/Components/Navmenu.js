@@ -1,5 +1,4 @@
 import React from "react";
-
 import "../Styles/components.css";
 
 function Navmenu() {
@@ -30,13 +29,7 @@ function Navmenu() {
               <a href="/create_patient">patient entry</a>
             </li>
           </ul>
-          <ul class="menu-links">
-            {/* <li>
-              <button className="logout-btn" href="">
-                logout
-              </button>
-            </li> */}
-          </ul>
+          <ul class="menu-links"></ul>
         </nav>
       </div>
     </div>

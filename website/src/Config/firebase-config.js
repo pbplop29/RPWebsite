@@ -16,5 +16,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
+// db is for for realtime database
+// storage is for firebase storage
+// storage allows us to store images and large files which realtime database cannot store.
 export const db = getDatabase(app);
 export const storage = getStorage(app);
