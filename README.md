@@ -14,9 +14,8 @@ This project is a system that uses an SpO2 sensor connected to an Arduino Mega t
         c) ESP-32
     3. Website
         a) Setting up Website and Installing dependencies
-        c) Linking Firebase
-        d) Retrieving data
-        e) Display
+        c) Linking Firebase and Retrieving data
+        d) Display and Running the website
 
 # Database
 
