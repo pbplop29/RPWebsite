@@ -11,17 +11,9 @@ This project is a system that uses an SpO2 sensor connected to an Arduino Mega t
     2. Arduino
         a) Interfacing
         b) Arduino Mega
-            - Getting data from sensor
-            - Processing data
-            - Sending data to ESP-32
         c) ESP-32
-            - Getting data from Arduino Mega
-            - Processing data
-            - Linking firebase
-            - Sending data to Firebase
     3. Website
-        a) Setting up Website
-        b) Installing dependencies
+        a) Setting up Website and Installing dependencies
         c) Linking Firebase
         d) Retrieving data
         e) Display
@@ -119,3 +111,185 @@ If more information on hardware, principles and interfacing is needed, please re
 > **_"https://ieeexplore.ieee.org/document/10039890"_**.
 
 ## **_Arduino Mega_**
+
+- Well, we start with the assumption that you already know how to compile, verify and upload the arduino code. Please go through some youtube tutorials, or arduino documentation to know about this.
+- A few things to consider will be usb drivers, arduino create agent.
+
+- The codes will be found in the github repository. Please copy the code into a main.ino file that distinguishes the Arduino Mega code.
+
+### Installing dependencies
+
+- Please install all the libraries that are asked for by the Arduino IDE.
+- The libraries can either be found by compiling and through errors or at the top of the file where they are included as:
+
+```ino
+#include <SPI.h>
+#include "Adafruit_GFX.h"
+#include <MCUFRIEND_kbv.h>
+```
+
+### Setup and data processing
+
+- Libraries being included and the variables being declared before setup are easy to understand, and yet there will be comments alongside to understand.
+- Make sure the baud rate is set to **_115200_** in the **_void setup()_** function.
+- In the **_void loop()_** function lies our majority of the code.
+- We use analogRead() to read the pin values, and track time using millis().
+- The values read and the time periods are used to calculate the SpO2 and Heart Rate.
+
+### Sending data to ESP-32
+
+- The following snippet is used to send the PPG sample points to the ESP-32.
+
+```ino
+  Serial.print("(");
+  Serial.print(sensor_ir_ac);
+  Serial.println(")");
+  delay(100);
+```
+
+- Notice that there is a delay of 100 ms after each sample point is sent, that is because the ESP-32 won't be able to process data being updated faster than this at a medium-fast internet connection due to issues like RTT, latency, etc. Hence 10 samples/second is maintained to accomodate to the ESP-32 capabilities.
+
+- The following snipper is used to send the SpO2, Heart Rate and Heart Rate ECG values to the ESP-32.
+
+```ino
+  Serial.print("{");
+  Serial.print(spo);
+  Serial.println("}");
+  delay(100);
+  Serial.print("[");
+  Serial.print(heart_rate);
+  Serial.println("]");
+  delay(100);
+  Serial.print("^");
+  Serial.print(heart_rate_ecg);
+  Serial.println("^");
+  delay(100);
+```
+
+## _ESP-32_
+
+- The codes will be found in the github repository. Please copy the code into a esp.ino file that distinguishes the ESP-32 code.
+
+### Installing dependencies
+
+- Please install all the libraries that are asked for by the Arduino IDE.
+- The libraries can either be found by compiling and through errors or at the top of the file where they are included as:
+
+```ino
+#include <ESP8266WiFi.h>
+#include <FirebaseESP32.h>
+```
+
+- Please use version 4.3.7 for the FirebaseESP32 library from the library manager or the code may not work due to version mismatch.
+- Go to **_"Documents\Arduino\libraries\firebase-arduino-master\src"_**.
+- Find **_FirebaseHttpClient.c_**.
+- Scroll to the bottom and replace the fingerprint we acquired earlier when setting up the database.
+
+- Set up the SSID and password for you internet wifi as:
+
+```ino
+#define WIFI_SSID "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆"
+#define WIFI_PASSWORD "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆"
+```
+
+- Set up firebase realtime database as:
+
+```ino
+
+#define FIREBASE_HOST "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆"
+#define FIREBASE_AUTH "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆"
+```
+
+- You will get the above details from the project settings in the firebase console.
+- Set up the baud rate to be 115200.
+- The code below will connect the device to Wifi and Firebase.
+
+```ino
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+```
+
+- The code below will extract the data in small brackets which will be the PPG sample points.
+
+```ino
+
+    if (data.startsWith("(") && data.endsWith(")")) {
+      String graphString = data.substring(1, data.length() - 1);
+      int graphVal = graphString.toInt();
+
+      values[numValues++] = graphVal;
+      // Combining three sample points into one integer to implement batch upload.
+      if (numValues == NUM_VALUES) {
+        int combined = values[0] * 1000000 + values[1] * 1000 + values[2];
+        int signedValue = (int)combined;
+        Firebase.RTDB.pushIntAsync(&firebaseData, id + "zzzgraph", signedValue);
+        numValues = 0;
+        count++;
+        memset(values, 0, sizeof(values));
+      }
+      if (count > 500) {
+        Firebase.RTDB.setAsync(&firebaseData, id + "zzzgraph", NULL);
+        count = 0;
+      }
+    }
+
+```
+
+- The code below will send the SpO2, Heart Rate and Heart Rate ECG values
+
+```ino
+    else if(data.startsWith("{") && data.endsWith("}")){
+      String tempString = data.substring(1, data.length() - 1);
+      float temp = tempString.toFloat();
+      Firebase.RTDB.setFloatAsync(&firebaseData, id + "spO2", temp);
+    }
+
+    else if(data.startsWith("[") && data.endsWith("]")){
+      String tempString = data.substring(1, data.length() - 1);
+      float temp = tempString.toFloat();
+      Firebase.RTDB.setFloatAsync(&firebaseData, id + "Heart Rate", temp);
+    }
+
+    else if(data.startsWith("^") && data.endsWith("^")){
+      String tempString = data.substring(1, data.length() - 1);
+      float temp = tempString.toFloat();
+      Firebase.RTDB.setFloatAsync(&firebaseData, id + "Heart Rate ECG", temp);
+    }
+```
+
+# Website
+
+## **_Setting Up the Website and Installing Dependencies_**
+
+- You can either create your own react project, visit the official documentation for tutorials and guidance.
+- You can also download the code in this repository.
+- After downloading the code, in the root directory go to the console and install all the dependencies using **_npm install_**
+- Make sure you have **_node package manager_** already installed, if not visit official sites to understand how to download it and how it works.
+- The project heirarchy is shown below:
+  ![Project Heirarchy](https://i.ibb.co/brb2RTs/Code-MKUa-YOr-Fh-O.png)
+
+## **_Linking Firebase and Retrieving Data_**
+
+- Inside the config directory you will find a file called **_firebase-config.js_**.
+- All you have to do is make sure, the configuration details we copied from our database earlier is pasted there.
+
+```js
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+
+const firebaseConfig = {
+  apiKey: "☆☆☆☆☆☆☆☆☆☆☆☆☆",
+  authDomain: "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆",
+  databaseURL: "☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆",
+  projectId: "☆☆☆☆☆☆☆☆☆☆☆",
+  storageBucket: "☆☆☆☆☆☆☆☆☆☆☆☆☆",
+  messagingSenderId: "☆☆☆☆☆☆☆☆☆☆☆☆",
+  appId: "☆☆☆☆☆☆☆",
+  measurementId: "☆☆☆☆☆☆☆☆☆☆☆",
+};
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+```
+
+- If you go the the statistics page, the database is simply called and processed as per the documentations of Firebase Realtime Database and React.
+- After entering **_npm start_** on the console in the root directory, the website will be launched on localhost:3000.
