@@ -292,4 +292,5 @@ const analytics = getAnalytics(app);
 ```
 
 - If you go the the statistics page, the database is simply called and processed as per the documentations of Firebase Realtime Database and React.
+- Consider going through the official documentation of ApexCharts which is the library used to display the waveforms. ***https://apexcharts.com/react-chart-demos/line-charts/realtime/***
 - After entering **_npm start_** on the console in the root directory, the website will be launched on localhost:3000.
