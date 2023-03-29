@@ -14,8 +14,8 @@ This project is a system that uses an SpO2 sensor connected to an Arduino Mega t
         c) ESP-32
     3. Website
         a) Setting up Website and Installing dependencies
-        c) Linking Firebase and Retrieving data
-        d) Display and Running the website
+        b) Linking Firebase and Retrieving data
+        c) Display and Launching the website
 
 # Database
 
@@ -291,5 +291,4 @@ const analytics = getAnalytics(app);
 ```
 
 - If you go the the statistics page, the database is simply called and processed as per the documentations of Firebase Realtime Database and React.
-- Consider going through the official documentation of ApexCharts which is the library used to display the waveforms. ***https://apexcharts.com/react-chart-demos/line-charts/realtime/***
 - After entering **_npm start_** on the console in the root directory, the website will be launched on localhost:3000.
